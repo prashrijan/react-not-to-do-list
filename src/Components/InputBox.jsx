@@ -7,6 +7,7 @@ const InputBox = ({ setTasks }) => {
   const handleClick = () => {
     if (!time && !task) {
       alert("Please fill out both field");
+      return;
     }
 
     setTasks((prev) => [
