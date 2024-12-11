@@ -1,6 +1,6 @@
 import React from "react";
 
-const BadList = ({ datas, toggleTaskType, getBadTaskTime }) => {
+const BadList = ({ datas, toggleTaskType, getBadTaskTime, deleteTask }) => {
   return (
     <div className="col-span-12 sm:col-span-6">
       {/* Entry List Header Row */}
@@ -35,6 +35,7 @@ const BadList = ({ datas, toggleTaskType, getBadTaskTime }) => {
                       <button
                         type="button"
                         className="p-2 text-white bg-red-500 rounded hover:bg-red-600 focus:outline-none"
+                        onClick={() => deleteTask(data.id)}
                       >
                         <i className="bi bi-trash"></i>
                       </button>

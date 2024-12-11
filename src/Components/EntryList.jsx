@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-const EntryList = ({ datas, toggleTaskType }) => {
+const EntryList = ({ datas, toggleTaskType, deleteTask }) => {
   return (
     <div className="col-span-12 sm:col-span-6">
       {/* Entry List Header Row */}
@@ -29,6 +29,7 @@ const EntryList = ({ datas, toggleTaskType }) => {
                       <button
                         type="button"
                         className="p-2 text-white bg-red-500 rounded hover:bg-red-600 focus:outline-none"
+                        onClick={() => deleteTask(data.id)}
                       >
                         <i className="bi bi-trash"></i>
                       </button>
