@@ -10,7 +10,6 @@ const BadList = ({
 }) => {
   return (
     <div className="col-span-12 sm:col-span-6">
-      {/* Entry List Header Row */}
       <div className="grid place-items-center">
         <h2 className="text-xl font-semibold">Bad List</h2>
         <hr className="w-full border-gray-300 my-2" />
