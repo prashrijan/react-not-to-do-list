@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 const EntryList = ({ datas, toggleTaskType, deleteTask }) => {
-  const [isChecked, setIsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleChecked = () => {
     setIsChecked(!isChecked);
