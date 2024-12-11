@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-const EntryList = ({ datas, toggleTaskType, deleteTask }) => {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleChecked = () => {
-    setIsChecked(!isChecked);
-  };
+const EntryList = ({
+  datas,
+  toggleTaskType,
+  deleteTask,
+  isChecked,
+  handleChecked,
+}) => {
   return (
     <div className="col-span-12 sm:col-span-6">
       {/* Entry List Header Row */}

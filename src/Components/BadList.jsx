@@ -1,6 +1,13 @@
 import React from "react";
 
-const BadList = ({ datas, toggleTaskType, getBadTaskTime, deleteTask }) => {
+const BadList = ({
+  datas,
+  toggleTaskType,
+  getBadTaskTime,
+  deleteTask,
+  isChecked,
+  handleChecked,
+}) => {
   return (
     <div className="col-span-12 sm:col-span-6">
       {/* Entry List Header Row */}
@@ -15,10 +22,17 @@ const BadList = ({ datas, toggleTaskType, getBadTaskTime, deleteTask }) => {
             {datas.map((data, index) => {
               if (!data.isGood) {
                 return (
-                  <tr key={index} className="border-b border-gray-300">
+                  <tr
+                    key={index}
+                    className={`order-b border-gray-300 ${
+                      isChecked ? "line-through text-gray-500" : ""
+                    }`}
+                  >
                     <th scope="row" className="p-2">
                       <input
                         type="checkbox"
+                        checked={isChecked}
+                        onChange={handleChecked}
                         className="form-checkbox h-5 w-5 text-blue-600"
                       />
                     </th>
