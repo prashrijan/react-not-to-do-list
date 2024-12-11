@@ -2,7 +2,8 @@ import "./App.css";
 
 import InputBox from "./Components/InputBox";
 import TotalTime from "./Components/TotalTime";
-import TaskList from "./Components/TaskList";
+import EntryList from "./Components/EntryList";
+import BadList from "./Components/BadList";
 
 function App() {
   let tasks = [
@@ -16,7 +17,7 @@ function App() {
       id: Date.now(),
       taskName: "Watch Tiktok",
       time: 10,
-      isGood: false,
+      isGood: true,
     },
     {
       id: Date.now(),
@@ -36,8 +37,8 @@ function App() {
         {/* Input Box */}
         <InputBox />
         <div className="grid grid-cols-12 gap-4 w-full">
-          <TaskList task="Entry" datas={tasks} />
-          <TaskList task="Bad" datas={tasks} />
+          <EntryList datas={tasks} />
+          <BadList datas={tasks} />
         </div>
 
         <TotalTime />
