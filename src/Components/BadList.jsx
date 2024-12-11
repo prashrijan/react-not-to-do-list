@@ -1,6 +1,6 @@
 import React from "react";
 
-const BadList = ({ datas, toggleTaskType }) => {
+const BadList = ({ datas, toggleTaskType, getBadTaskTime }) => {
   return (
     <div className="col-span-12 sm:col-span-6">
       {/* Entry List Header Row */}
@@ -53,7 +53,9 @@ const BadList = ({ datas, toggleTaskType }) => {
         className="p-4 text-md text-gray-800 rounded-lg bg-gray-50 mt-4"
         role="alert"
       >
-        <span className="font-medium">You could have saved 0 hours.</span>
+        <span className="font-medium">
+          You could have saved {getBadTaskTime() || 0} hours.
+        </span>
       </div>
     </div>
   );

@@ -9,8 +9,8 @@ import { useState } from "react";
 function App() {
   let [tasks, setTasks] = useState([]);
 
-  const getTotalTime = () => {
-    return tasks.reduce((total, item) => {
+  const getTotalTime = (array) => {
+    return array.reduce((total, item) => {
       return total + item.time;
     }, 0);
   };
@@ -21,6 +21,11 @@ function App() {
         task.id === id ? { ...task, isGood: !task.isGood } : task
       )
     );
+  };
+
+  const getBadTaskTime = () => {
+    let badTasks = tasks.filter((task) => !task.isGood);
+    return getTotalTime(badTasks);
   };
 
   return (
@@ -34,10 +39,14 @@ function App() {
         <InputBox setTasks={setTasks} />
         <div className="grid grid-cols-12 gap-4 w-full">
           <EntryList datas={tasks} toggleTaskType={toggleTaskType} />
-          <BadList datas={tasks} toggleTaskType={toggleTaskType} />
+          <BadList
+            datas={tasks}
+            toggleTaskType={toggleTaskType}
+            getBadTaskTime={getBadTaskTime}
+          />
         </div>
 
-        <TotalTime getTotalTime={getTotalTime} />
+        <TotalTime getTotalTime={getTotalTime} datas={tasks} />
       </div>
     </>
   );
