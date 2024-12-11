@@ -1,6 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
-const InputBox = () => {
+const InputBox = ({ setTasks }) => {
+  const [task, setTask] = useState("");
+  const [time, setTime] = useState("");
+
+  const handleClick = () => {
+    if (!time && !task) {
+      alert("Please fill out both field");
+    }
+
+    setTasks((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        taskName: task,
+        time: parseInt(time),
+        isGood: true,
+      },
+    ]);
+
+    setTask("");
+    setTime("");
+  };
   return (
     <div className="grid grid-cols-1 gap-3 p-10 border rounded-lg shadow-lg sm:grid-cols-12">
       <p className="text-red-500 hidden" id="error-msg">
@@ -11,7 +32,8 @@ const InputBox = () => {
           type="text"
           className="w-full p-2 border rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Task"
-          id="input-task"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
         />
       </div>
       <div className="col-span-12 sm:col-span-2">
@@ -19,7 +41,8 @@ const InputBox = () => {
           type="number"
           className="w-full p-2 border rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="hours"
-          id="hours"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
         />
       </div>
       <div className="col-span-12 sm:col-span-3">
@@ -27,6 +50,7 @@ const InputBox = () => {
           type="button"
           className="w-full p-2 text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-2 focus:ring-green-300 focus:outline-none"
           id="button"
+          onClick={handleClick}
         >
           Add task
         </button>

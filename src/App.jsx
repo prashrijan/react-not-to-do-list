@@ -4,28 +4,24 @@ import InputBox from "./Components/InputBox";
 import TotalTime from "./Components/TotalTime";
 import EntryList from "./Components/EntryList";
 import BadList from "./Components/BadList";
+import { useState } from "react";
 
 function App() {
-  let tasks = [
-    {
-      id: Date.now(),
-      taskName: "Eat Food",
-      time: 1,
-      isGood: true,
-    },
-    {
-      id: Date.now(),
-      taskName: "Watch Tiktok",
-      time: 10,
-      isGood: true,
-    },
-    {
-      id: Date.now(),
-      taskName: "Take Shower",
-      time: 1,
-      isGood: true,
-    },
-  ];
+  let [tasks, setTasks] = useState([]);
+
+  const getTotalTime = () => {
+    return tasks.reduce((total, item) => {
+      return total + item.time;
+    }, 0);
+  };
+
+  const toggleTaskType = (id) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, isGood: !task.isGood } : task
+      )
+    );
+  };
 
   return (
     <>
@@ -35,13 +31,13 @@ function App() {
           <h1 className="text-4xl font-bold text-center">NOT TO DO LIST</h1>
         </div>
         {/* Input Box */}
-        <InputBox />
+        <InputBox setTasks={setTasks} />
         <div className="grid grid-cols-12 gap-4 w-full">
-          <EntryList datas={tasks} />
-          <BadList datas={tasks} />
+          <EntryList datas={tasks} toggleTaskType={toggleTaskType} />
+          <BadList datas={tasks} toggleTaskType={toggleTaskType} />
         </div>
 
-        <TotalTime />
+        <TotalTime getTotalTime={getTotalTime} />
       </div>
     </>
   );

@@ -1,8 +1,7 @@
 import React from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { data } from "autoprefixer";
 
-const EntryList = ({ datas }) => {
+const EntryList = ({ datas, toggleTaskType }) => {
   return (
     <div className="col-span-12 sm:col-span-6">
       {/* Entry List Header Row */}
@@ -11,14 +10,13 @@ const EntryList = ({ datas }) => {
         <hr className="w-full border-gray-300 my-2" />
       </div>
 
-      {/* Entry List Table Row */}
       <div>
         <table className="table-auto w-full text-center border-collapse">
           <tbody>
-            {datas.map((data) => {
+            {datas.map((data, index) => {
               if (data.isGood) {
                 return (
-                  <tr className="border-b border-gray-300">
+                  <tr key={index} className="border-b border-gray-300">
                     <th scope="row" className="p-2">
                       <input
                         type="checkbox"
@@ -32,14 +30,14 @@ const EntryList = ({ datas }) => {
                         type="button"
                         className="p-2 text-white bg-red-500 rounded hover:bg-red-600 focus:outline-none"
                       >
-                        <i class="bi bi-trash"></i>
+                        <i className="bi bi-trash"></i>
                       </button>
                       <button
                         type="button"
                         className="p-2 text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none"
-                        onClick={() => toggleTaskType(1733880651470)}
+                        onClick={() => toggleTaskType(data.id)}
                       >
-                        <i class="bi bi-arrow-right"></i>
+                        <i className="bi bi-arrow-right"></i>
                       </button>
                     </td>
                   </tr>

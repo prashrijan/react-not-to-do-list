@@ -1,7 +1,6 @@
-import { data } from "autoprefixer";
 import React from "react";
 
-const BadList = ({ datas }) => {
+const BadList = ({ datas, toggleTaskType }) => {
   return (
     <div className="col-span-12 sm:col-span-6">
       {/* Entry List Header Row */}
@@ -10,14 +9,13 @@ const BadList = ({ datas }) => {
         <hr className="w-full border-gray-300 my-2" />
       </div>
 
-      {/* Entry List Table Row */}
       <div>
         <table className="table-auto w-full text-center border-collapse">
           <tbody>
-            {datas.map((data) => {
+            {datas.map((data, index) => {
               if (!data.isGood) {
                 return (
-                  <tr className="border-b border-gray-300">
+                  <tr key={index} className="border-b border-gray-300">
                     <th scope="row" className="p-2">
                       <input
                         type="checkbox"
@@ -30,14 +28,15 @@ const BadList = ({ datas }) => {
                       <button
                         type="button"
                         className="p-2 text-white bg-yellow-500 rounded hover:bg-yellow-600 focus:outline-none"
+                        onClick={() => toggleTaskType(data.id)}
                       >
-                        <i class="bi bi-arrow-left"></i>
+                        <i className="bi bi-arrow-left"></i>
                       </button>
                       <button
                         type="button"
                         className="p-2 text-white bg-red-500 rounded hover:bg-red-600 focus:outline-none"
                       >
-                        <i class="bi bi-trash"></i>
+                        <i className="bi bi-trash"></i>
                       </button>
                     </td>
                   </tr>
