@@ -23,7 +23,7 @@ const InputBox = ({ setTasks }) => {
     setTime("");
   };
   return (
-    <div className="grid grid-cols-1 gap-3 p-10 border rounded-lg shadow-lg sm:grid-cols-12">
+    <div className="grid grid-cols-1 gap-3 p-10 border rounded-lg shadow-lg sm:grid-cols-12 w-full md:w-3/4">
       <p className="text-red-500 hidden" id="error-msg">
         Please enter a task..
       </p>
