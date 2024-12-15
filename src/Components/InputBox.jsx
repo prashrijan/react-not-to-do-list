@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const InputBox = ({ setTasks, isLoading, setIsLoading }) => {
+const InputBox = ({ setTasks, setIsLoading }) => {
   const [task, setTask] = useState("");
   const [time, setTime] = useState("");
 
