@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-const EntryList = ({
-  datas,
-  toggleTaskType,
-  deleteTask,
-  isChecked,
-  handleChecked,
-}) => {
+const EntryList = ({ datas, toggleTaskType, deleteTask, handleChecked }) => {
   return (
     <div className="col-span-12 sm:col-span-6">
       {/* Entry List Header Row */}
@@ -25,14 +19,16 @@ const EntryList = ({
                   <tr
                     key={index}
                     className={`order-b border-gray-300 ${
-                      isChecked ? "line-through text-gray-500" : ""
+                      data.isCompleted ? "line-through text-gray-500" : ""
                     }`}
                   >
                     <th scope="row" className="p-2">
                       <input
                         type="checkbox"
-                        checked={isChecked}
-                        onChange={handleChecked}
+                        checked={data.isCompleted}
+                        onChange={() => {
+                          handleChecked(data.id);
+                        }}
                         className="form-checkbox h-5 w-5 text-blue-600"
                       />
                     </th>

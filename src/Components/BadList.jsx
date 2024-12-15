@@ -5,7 +5,6 @@ const BadList = ({
   toggleTaskType,
   getBadTaskTime,
   deleteTask,
-  isChecked,
   handleChecked,
 }) => {
   return (
@@ -24,14 +23,16 @@ const BadList = ({
                   <tr
                     key={index}
                     className={`order-b border-gray-300 ${
-                      isChecked ? "line-through text-gray-500" : ""
+                      data.isCompleted ? "line-through text-gray-500" : ""
                     }`}
                   >
                     <th scope="row" className="p-2">
                       <input
                         type="checkbox"
-                        checked={isChecked}
-                        onChange={handleChecked}
+                        checked={data.isCompleted}
+                        onChange={() => {
+                          handleChecked(data.id);
+                        }}
                         className="form-checkbox h-5 w-5 text-blue-600"
                       />
                     </th>

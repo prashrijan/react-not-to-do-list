@@ -9,8 +9,6 @@ import { useState } from "react";
 function App() {
   let [tasks, setTasks] = useState([]);
 
-  const [isChecked, setIsChecked] = useState(false);
-
   const getTotalTime = (array) => {
     return array.reduce((total, item) => {
       return total + item.time;
@@ -34,9 +32,16 @@ function App() {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
 
-  const handleChecked = () => {
-    setIsChecked(!isChecked);
+  const handleChecked = (id) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
+      )
+    );
   };
+
+  console.log(tasks);
+
   return (
     <>
       <div className="min-h-screen flex flex-col w-full items-center gap-10 px-12 py-10 bg-gradient-to-t from-[#22C1C3] to-[#FDBB2D]">
@@ -51,7 +56,6 @@ function App() {
             datas={tasks}
             toggleTaskType={toggleTaskType}
             deleteTask={deleteTask}
-            isChecked={isChecked}
             handleChecked={handleChecked}
           />
           <BadList
@@ -59,7 +63,6 @@ function App() {
             toggleTaskType={toggleTaskType}
             getBadTaskTime={getBadTaskTime}
             deleteTask={deleteTask}
-            isChecked={isChecked}
             handleChecked={handleChecked}
           />
         </div>

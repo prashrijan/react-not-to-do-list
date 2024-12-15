@@ -17,6 +17,7 @@ const InputBox = ({ setTasks }) => {
         taskName: task,
         time: parseInt(time),
         isGood: true,
+        isCompleted: false,
       },
     ]);
 
