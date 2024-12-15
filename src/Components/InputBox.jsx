@@ -5,7 +5,7 @@ const InputBox = ({ setTasks, isLoading, setIsLoading }) => {
   const [time, setTime] = useState("");
 
   const handleClick = () => {
-    if (!time && !task) {
+    if ((!time && !task) || !time || !task) {
       alert("Please fill out both field");
       return;
     }
