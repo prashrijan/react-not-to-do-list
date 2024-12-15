@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const InputBox = ({ setTasks, isLoading, setIsLoading }) => {
   const [task, setTask] = useState("");
@@ -30,6 +30,21 @@ const InputBox = ({ setTasks, isLoading, setIsLoading }) => {
     setTask("");
     setTime("");
   };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleClick();
+    } else {
+      return;
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", (e) => {
+      handleKeyDown;
+    });
+  }, []);
+
   return (
     <div className="grid grid-cols-1 gap-3 p-10 border rounded-lg shadow-lg sm:grid-cols-12 w-full md:w-3/4">
       <p className="text-red-500 hidden" id="error-msg">
