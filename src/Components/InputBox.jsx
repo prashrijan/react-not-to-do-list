@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const InputBox = ({ setTasks }) => {
+const InputBox = ({ setTasks, isLoading, setIsLoading }) => {
   const [task, setTask] = useState("");
   const [time, setTime] = useState("");
 
@@ -10,16 +10,22 @@ const InputBox = ({ setTasks }) => {
       return;
     }
 
-    setTasks((prev) => [
-      ...prev,
-      {
-        id: Date.now(),
-        taskName: task,
-        time: parseInt(time),
-        isGood: true,
-        isCompleted: false,
-      },
-    ]);
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setTasks((prev) => [
+        ...prev,
+        {
+          id: Date.now(),
+          taskName: task,
+          time: parseInt(time),
+          isGood: true,
+          isCompleted: false,
+        },
+      ]);
+
+      setIsLoading(false);
+    }, 500);
 
     setTask("");
     setTime("");

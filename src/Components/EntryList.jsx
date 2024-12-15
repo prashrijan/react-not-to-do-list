@@ -4,7 +4,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const EntryList = ({ datas, toggleTaskType, deleteTask, handleChecked }) => {
   return (
     <div className="col-span-12 sm:col-span-6">
-      {/* Entry List Header Row */}
       <div className="grid place-items-center">
         <h2 className="text-xl font-semibold">Entry List</h2>
         <hr className="w-full border-gray-300 my-2" />
