@@ -5,10 +5,13 @@ import TotalTime from "./Components/TotalTime";
 import EntryList from "./Components/EntryList";
 import BadList from "./Components/BadList";
 import { useState } from "react";
+import DeleteModal from "./Components/DeleteModal";
 
 function App() {
   let [tasks, setTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedTask, setSelectedTask] = useState({});
 
   // Get total time of the task
   const getTotalTime = (array) => {
@@ -81,12 +84,22 @@ function App() {
           </div>
         )}
 
+        {showModal && (
+          <DeleteModal
+            setShowModal={setShowModal}
+            deleteTask={deleteTask}
+            selectedTask={selectedTask}
+          />
+        )}
+
         <div className="grid grid-cols-12 gap-4 w-full">
           <EntryList
             datas={tasks}
             toggleTaskType={toggleTaskType}
             deleteTask={deleteTask}
             handleChecked={handleChecked}
+            setShowModal={setShowModal}
+            setSelectedTask={setSelectedTask}
           />
           <BadList
             datas={tasks}
@@ -94,6 +107,8 @@ function App() {
             getBadTaskTime={getBadTaskTime}
             deleteTask={deleteTask}
             handleChecked={handleChecked}
+            setShowModal={setShowModal}
+            setSelectedId={setSelectedTask}
           />
         </div>
 

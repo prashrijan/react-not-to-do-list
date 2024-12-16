@@ -4,8 +4,9 @@ const BadList = ({
   datas,
   toggleTaskType,
   getBadTaskTime,
-  deleteTask,
   handleChecked,
+  setShowModal,
+  setSelectedTask,
 }) => {
   return (
     <div className="col-span-12 sm:col-span-6">
@@ -49,7 +50,10 @@ const BadList = ({
                       <button
                         type="button"
                         className="p-2 text-white bg-red-500 rounded hover:bg-red-600 focus:outline-none"
-                        onClick={() => deleteTask(data.id)}
+                        onClick={() => {
+                          setSelectedTask(data);
+                          setShowModal(true);
+                        }}
                       >
                         <i className="bi bi-trash"></i>
                       </button>

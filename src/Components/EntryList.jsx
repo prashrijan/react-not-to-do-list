@@ -1,7 +1,12 @@
-import React, { useState } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-const EntryList = ({ datas, toggleTaskType, deleteTask, handleChecked }) => {
+const EntryList = ({
+  datas,
+  toggleTaskType,
+  handleChecked,
+  setShowModal,
+  setSelectedTask,
+}) => {
   return (
     <div className="col-span-12 sm:col-span-6">
       <div className="grid place-items-center">
@@ -37,7 +42,10 @@ const EntryList = ({ datas, toggleTaskType, deleteTask, handleChecked }) => {
                       <button
                         type="button"
                         className="p-2 text-white bg-red-500 rounded hover:bg-red-600 focus:outline-none"
-                        onClick={() => deleteTask(data.id)}
+                        onClick={() => {
+                          setSelectedTask(data);
+                          setShowModal(true);
+                        }}
                       >
                         <i className="bi bi-trash"></i>
                       </button>
